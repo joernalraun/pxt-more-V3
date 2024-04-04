@@ -32,7 +32,7 @@ const uint8_t MBIT_MORE_CH_ANALOG_IN_P2[] = {0x0b, 0x50, 0x01, 0x22, 0x60, 0x7f,
 
 /**
  * Class definition for the Scratch MicroBit More Service.
- * Provides a BLE service to remotely controll Micro:bit from Scratch3.
+ * Provides a BLE service to remotely control Micro:bit from Scratch3.
  */
 
 /**
@@ -99,12 +99,21 @@ MbitMoreServiceDAL::MbitMoreServiceDAL() : uBit(pxt::uBit) {
       this, &MbitMoreServiceDAL::onReadAnalogIn);
   analogInP2Ch->requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
 
+    analogInP3Ch = new GattCharacteristic(
+      MBIT_MORE_CH_ANALOG_IN_P3, (uint8_t *)&analogInP3ChBuffer,
+      MM_CH_BUFFER_SIZE_ANALOG_IN, MM_CH_BUFFER_SIZE_ANALOG_IN,
+      GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_READ);
+  analogInP2Ch->setReadAuthorizationCallback(
+      this, &MbitMoreServiceDAL::onReadAnalogIn);
+  analogInP2Ch->requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
+
+
   /*
   stateCh = digitalIn[4], lightLevel[1], temperature[1], microphone[1]
-  directionCh = acceleration[10], magnet[8]
+  directionCh = acceleration[10]
   pinEventCh = pinEvent
   actionEventCh = buttonEvent, gestureEvent
-  analogInP0Ch, analogInP1Ch, analogInP2Ch
+  analogInP0Ch, analogInP1Ch, analogInP2Ch, analogInP3Ch
   */
 
   GattCharacteristic *mbitMoreChs[] = {
