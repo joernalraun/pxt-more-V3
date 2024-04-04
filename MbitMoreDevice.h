@@ -50,6 +50,7 @@ enum MbitMoreButtonStateIndex
   A = 27,
   B = 28,
   LOGO = 29,
+  P3 = 30,
 };
 
 /**
@@ -151,9 +152,9 @@ public:
    * @brief Pins which is pull-up at connected.
    * 
    */
-  int initialPullUp[3] = {0, 1, 2};
+  int initialPullUp[4] = {0, 1, 2, 3};
 
-  bool touchMode[3] = {false};
+  bool touchMode[4] = {false};
 
   /**
    * @brief Shadow screen to display on the LED.
@@ -394,7 +395,7 @@ public:
    * @brief Display friendly name of the micro:bit.
    * 
    */
-  void displayFriendlyName();
+  //void displayFriendlyName();
 
   /**
    * @brief Display software version of Microbit More.
