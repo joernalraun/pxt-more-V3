@@ -91,18 +91,18 @@ void copyManagedString(char *dst, ManagedString mstr, size_t maxLength) {
  */
 MbitMoreDevice::MbitMoreDevice(MicroBit &_uBit) : uBit(_uBit) {
   // Reset compass
-#if MICROBIT_CODAL
+//#if MICROBIT_CODAL
   // On microbit-v2, re-calibration destruct compass heading.
-#else // NOT MICROBIT_CODAL
-  if (uBit.buttonA.isPressed()) {
-    uBit.compass.clearCalibration();
+//#else // NOT MICROBIT_CODAL
+//  if (uBit.buttonA.isPressed()) {
+//    uBit.compass.clearCalibration();
   }
-#endif // NOT MICROBIT_CODAL
+//#endif // NOT MICROBIT_CODAL
 
   // Compass must be calibrated before starting bluetooth service.
-  if (!uBit.compass.isCalibrated()) {
-    uBit.compass.calibrate();
-  }
+  //if (!uBit.compass.isCalibrated()) {
+  //  uBit.compass.calibrate();
+  //}
 
   // to detect 8G gesture event
   uBit.accelerometer.setRange(8);
@@ -453,19 +453,19 @@ void MbitMoreDevice::updateMotion(uint8_t *data) {
 
   // Magnetometer
   // Compass Heading is sent as uint16_t little-endian [10..11]
-  uint16_t heading = (uint16_t)normalizeCompassHeading(uBit.compass.heading());
-  memcpy(&(data[10]), &heading, 2);
+ // uint16_t heading = (uint16_t)normalizeCompassHeading(uBit.compass.heading());
+  //memcpy(&(data[10]), &heading, 2);
 
   int16_t force;
   // Magnetic force X (micro-teslas) is sent as int16_t little-endian[12..13].
-  force = (int16_t)(uBit.compass.getX() / 1000);
-  memcpy(&(data[12]), &force, 2);
+ // force = (int16_t)(uBit.compass.getX() / 1000);
+ // memcpy(&(data[12]), &force, 2);
   // Magnetic force Y (micro-teslas) is sent as int16_t little-endian[14..15].
-  force = (int16_t)(uBit.compass.getY() / 1000);
-  memcpy(&(data[14]), &force, 2);
+ // force = (int16_t)(uBit.compass.getY() / 1000);
+ // memcpy(&(data[14]), &force, 2);
   // Magnetic force Z (micro-teslas) is sent as int16_t little-endian[16..17].
-  force = (int16_t)(uBit.compass.getZ() / 1000);
-  memcpy(&(data[16]), &force, 2);
+ // force = (int16_t)(uBit.compass.getZ() / 1000);
+ // memcpy(&(data[16]), &force, 2);
 }
 
 /**
@@ -838,16 +838,16 @@ void MbitMoreDevice::onGestureChanged(MicroBitEvent evt) {
  * @param heading value of the compass heading
  * @return normalizes angle relative to north [degree]
  */
-int MbitMoreDevice::normalizeCompassHeading(int heading) {
-  if (uBit.accelerometer.getZ() > 0) {
-    if (heading <= 180) {
-      heading = 180 - heading;
-    } else {
-      heading = 360 - (heading - 180);
-    }
-  }
-  return heading;
-}
+//int MbitMoreDevice::normalizeCompassHeading(int heading) {
+ // if (uBit.accelerometer.getZ() > 0) {
+   // if (heading <= 180) {
+     // heading = 180 - heading;
+    // } else {
+    //  heading = 360 - (heading - 180);
+   // }
+ // }
+ // return heading;
+//}
 
 /**
  * @brief Set pull-mode.
