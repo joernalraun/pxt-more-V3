@@ -202,8 +202,8 @@ void MbitMoreDevice::onBLEConnected(MicroBitEvent _e) {
   fiber_sleep(100); // to change pull-mode in micro:bit v2
 #endif // MICROBIT_CODAL
   initializeConfig();
-  uBit.display.stopAnimation(); // To stop display friendly name.
-  uBit.display.print("M");
+ // uBit.display.stopAnimation(); // To stop display friendly name.
+ // uBit.display.print("M");
 }
 
 /**
@@ -218,8 +218,8 @@ void MbitMoreDevice::onBLEDisconnected(MicroBitEvent _e) {
 void MbitMoreDevice::onSerialConnected() {
   uBit.ble->stopAdvertising();
   initializeConfig();
-  uBit.display.stopAnimation(); // To stop display friendly name.
-  uBit.display.print("M");
+ // uBit.display.stopAnimation(); // To stop display friendly name.
+ // uBit.display.print("M");
   serialConnected = true;
 }
 
@@ -937,7 +937,7 @@ void MbitMoreDevice::setServoValue(int pinIndex, int angle, int range,
 void MbitMoreDevice::displayFriendlyName() {
   if (serialConnected)
     return;
-  uBit.display.scrollAsync(ManagedString(microbit_friendly_name()), 120);
+ // uBit.display.scrollAsync(ManagedString(microbit_friendly_name()), 120);
 }
 
 /**
@@ -945,7 +945,7 @@ void MbitMoreDevice::displayFriendlyName() {
  * 
  */
 void MbitMoreDevice::displayVersion() {
-  uBit.display.scrollAsync(ManagedString(" -M 0.2.5- "), 120);
+ // uBit.display.scrollAsync(ManagedString(" -M 0.2.5- "), 120);
 }
 
 /**
