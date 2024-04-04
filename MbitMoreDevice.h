@@ -467,7 +467,7 @@ private:
    * @param heading value of the compass heading
    * @return normalizes angle relative to north [degree]
    */
-  int normalizeCompassHeading(int heading);
+ // int normalizeCompassHeading(int heading);
 
   /**
    * @brief Whether the pin is a GPIO of not.
