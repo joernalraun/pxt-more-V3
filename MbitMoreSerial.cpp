@@ -264,6 +264,15 @@ void MbitMoreSerial::startSerialReceiving() {
         continue;
       }
     }
+    if (0x0123 == ch) {
+      if (ChRequest::REQ_READ == requestType) {
+        mbitMore.updateAnalogIn(moreService->analogInP3ChBuffer, 3);
+        readResponseOnSerial(ch, moreService->analogInP3ChBuffer, MM_CH_BUFFER_SIZE_ANALOG_IN);
+        frameReceived = 0; // reset frame reading
+        continue;
+      }
+    }
+
 
     // Not matched
     frameReceived--;
