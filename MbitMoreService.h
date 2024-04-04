@@ -49,6 +49,9 @@ public:
   // Buffer of characteristic for sending analog input values of P2.
   uint8_t analogInP2ChBuffer[MM_CH_BUFFER_SIZE_ANALOG_IN] = {0};
 
+// Buffer of characteristic for sending analog input values of P3.
+  uint8_t analogInP3ChBuffer[MM_CH_BUFFER_SIZE_ANALOG_IN] = {0};
+
   // Buffer of characteristic for sending data.
   uint8_t dataChBuffer[MM_CH_BUFFER_SIZE_NOTIFY] = {0};
 
@@ -177,9 +180,11 @@ private:
     mbitmore_cIdx_ANALOG_IN_P0,
     mbitmore_cIdx_ANALOG_IN_P1,
     mbitmore_cIdx_ANALOG_IN_P2,
+    mbitmore_cIdx_ANALOG_IN_P3,
     mbitmore_cIdx_DATA,
     mbitmore_cIdx_COUNT
   } mbitmore_cIdx;
+
 
   // UUIDs for our service and characteristics
   static const uint8_t baseUUID[16];
